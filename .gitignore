@@ -1,0 +1,15 @@
+# dependencies
+/node_modules
+
+# production
+/dist
+
+# ide
+.idea
+
+# env
+.env
+.env.production
+
+# swc
+.swc
