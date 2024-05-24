@@ -1,4 +1,4 @@
-export interface LoginSchema {
+export interface LoginByUsernameSchema {
   username: string;
   password: string;
   isLoading?: boolean;

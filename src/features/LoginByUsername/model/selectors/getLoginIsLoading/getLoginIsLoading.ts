@@ -1,7 +1,3 @@
-import { createSelector } from '@reduxjs/toolkit';
+import { StoreSchema } from '@/app/providers/StoreProvider/types/storeSchema';
 
-import { getLoginState } from '../getLoginState/getLoginState';
-
-export const getLoginIsLoading = createSelector(getLoginState, (login) => {
-  return login?.isLoading || false;
-});
+export const getLoginIsLoading = (state: StoreSchema) => state.login?.isLoading;

@@ -3,6 +3,7 @@ import { LoginPage } from '@/pages/LoginPage';
 import { MainPage } from '@/pages/MainPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { RecipeCreatePage } from '@/pages/RecipeCreatePage';
+import { RecipeEditPage } from '@/pages/RecipeEditPage';
 import { RecipePage } from '@/pages/RecipePage';
 
 import {
@@ -12,6 +13,7 @@ import {
   getRouteMain,
   getRouteRecipe,
   getRouteRecipeCreate,
+  getRouteRecipeEdit,
 } from '@/shared/consts/router';
 import { AppRoutesProps } from '@/shared/types/router';
 
@@ -23,6 +25,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.LOGIN]: {
     path: getRouteLogin(),
     element: <LoginPage />,
+    guest: true,
   },
   [AppRoutes.RECIPE]: {
     path: getRouteRecipe(':id'),
@@ -31,7 +34,12 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.RECIPE_CREATE]: {
     path: getRouteRecipeCreate(),
     element: <RecipeCreatePage />,
-    authOnly: true,
+    auth: true,
+  },
+  [AppRoutes.RECIPE_EDIT]: {
+    path: getRouteRecipeEdit(':id'),
+    element: <RecipeEditPage />,
+    auth: true,
   },
   [AppRoutes.FORBIDDEN]: {
     path: getRouteForbidden(),

@@ -7,12 +7,14 @@ export interface Ingredient {
 }
 
 export interface Recipe {
-  id: string;
-  title: string;
-  image: string;
-  likes: number;
-  description: string;
-  cookingSteps: string[];
-  ingredients: Ingredient[];
-  difficulty: RecipeDifficulty;
+  id?: string;
+  title?: string;
+  image?: string;
+  likes?: number;
+  description?: string;
+  cookingSteps?: string[];
+  ingredients?: Ingredient[];
+  baseIngredients?: string[];
+  difficulty?: RecipeDifficulty;
+  userId?: string;
 }

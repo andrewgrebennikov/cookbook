@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { getAuthData, userActions } from '@/entities/User';
 
-import { getRouteLogin, getRouteRecipeCreate } from '@/shared/consts/router';
+import { getRouteLogin, getRouteMain, getRouteRecipeCreate } from '@/shared/consts/router';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 
 interface IHeaderProps {
@@ -20,7 +20,10 @@ export const Header = (props: IHeaderProps) => {
   };
 
   return (
-    <header className="py-3 d-flex justify-content-end gap-3">
+    <header className="py-3 d-flex justify-content-end align-items-center gap-3">
+      <Link className="flex-fill" to={getRouteMain()}>
+        На главную
+      </Link>
       {authData ? (
         <>
           <Link className="btn btn-primary" to={getRouteRecipeCreate()}>

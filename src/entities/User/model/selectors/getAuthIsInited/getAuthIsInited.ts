@@ -1,3 +1,3 @@
 import { StoreSchema } from '@/app/providers/StoreProvider/types/storeSchema';
 
-export const getLoginState = (state: StoreSchema) => state?.login;
+export const getAuthIsInited = (state: StoreSchema) => state.user._inited;

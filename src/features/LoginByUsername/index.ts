@@ -1,3 +1,3 @@
 export { LoginForm } from './ui/LoginForm';
-export type { LoginSchema } from './model/types/loginSchema';
-export { loginReducer } from './model/slice/loginSlice';
+export type { LoginByUsernameSchema } from './model/types/loginByUsernameSchema';
+export { loginReducer } from './model/slice/loginByUsernameSlice';

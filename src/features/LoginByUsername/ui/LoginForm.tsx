@@ -1,8 +1,6 @@
-import { ChangeEvent, SyntheticEvent, useEffect } from 'react';
+import { ChangeEvent, SyntheticEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
-import { getAuthData } from '@/entities/User';
 
 import { getRouteMain } from '@/shared/consts/router';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
@@ -12,7 +10,7 @@ import { getLoginIsLoading } from '../model/selectors/getLoginIsLoading/getLogin
 import { getLoginPassword } from '../model/selectors/getLoginPassword/getLoginPassword';
 import { getLoginUsername } from '../model/selectors/getLoginUsername/getLoginUsername';
 import { loginByUsername } from '../model/services/loginByUsername/loginByUsername';
-import { loginActions } from '../model/slice/loginSlice';
+import { loginActions } from '../model/slice/loginByUsernameSlice';
 
 interface ILoginFormProps {
   className?: string;
@@ -26,7 +24,6 @@ export const LoginForm = (props: ILoginFormProps) => {
   const password = useSelector(getLoginPassword);
   const isLoading = useSelector(getLoginIsLoading);
   const error = useSelector(getLoginError);
-  const authData = useSelector(getAuthData);
 
   const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(loginActions.setUsername(event.target.value));
@@ -44,12 +41,6 @@ export const LoginForm = (props: ILoginFormProps) => {
       navigate(getRouteMain());
     }
   };
-
-  useEffect(() => {
-    if (authData) {
-      navigate(getRouteMain());
-    }
-  }, [authData, navigate]);
 
   return (
     <form onSubmit={handleLoginFormSubmit}>
