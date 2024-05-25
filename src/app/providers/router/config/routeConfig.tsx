@@ -1,4 +1,3 @@
-import { ForbiddenPage } from '@/pages/ForbiddenPage';
 import { LoginPage } from '@/pages/LoginPage';
 import { MainPage } from '@/pages/MainPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
@@ -8,7 +7,6 @@ import { RecipePage } from '@/pages/RecipePage';
 
 import {
   AppRoutes,
-  getRouteForbidden,
   getRouteLogin,
   getRouteMain,
   getRouteRecipe,
@@ -40,10 +38,6 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     path: getRouteRecipeEdit(':id'),
     element: <RecipeEditPage />,
     auth: true,
-  },
-  [AppRoutes.FORBIDDEN]: {
-    path: getRouteForbidden(),
-    element: <ForbiddenPage />,
   },
   [AppRoutes.NOT_FOUND]: {
     path: '*',

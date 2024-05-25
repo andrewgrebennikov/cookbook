@@ -21,11 +21,19 @@ export const RecipesList = (props: IRecipesListProps) => {
   }
 
   if (error) {
-    return <div>Произошла ошибка при загрузке рецептов</div>;
+    return (
+      <div className="alert alert-danger" role="alert">
+        Произошла ошибка при загрузке рецептов
+      </div>
+    );
   }
 
   if (!recipes?.length) {
-    return <div>Рецепты не найдены</div>;
+    return (
+      <div className="alert alert-danger" role="alert">
+        Рецепты не найдены
+      </div>
+    );
   }
 
   return (

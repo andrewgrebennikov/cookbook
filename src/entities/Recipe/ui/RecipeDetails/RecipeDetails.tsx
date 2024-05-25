@@ -49,7 +49,11 @@ export const RecipeDetails = (props: IRecipeDetailsProps) => {
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
       {isLoading && <div>Загрузка рецепта...</div>}
-      {error && <div>Произошла ошибка при загрузки рецепта</div>}
+      {error && (
+        <div className="alert alert-danger" role="alert">
+          Произошла ошибка при загрузки рецепта
+        </div>
+      )}
       {!isLoading && !error && recipeData && (
         <>
           {canEdit && (
@@ -66,7 +70,7 @@ export const RecipeDetails = (props: IRecipeDetailsProps) => {
           <img
             width="600"
             height="400"
-            className="object-fit-cover border rounded mb-3"
+            className="object-fit-cover border rounded mb-3 d-block"
             src={recipeData.image}
             alt={recipeData.title}
           />
@@ -75,7 +79,7 @@ export const RecipeDetails = (props: IRecipeDetailsProps) => {
             {recipeData.ingredients?.map((ingredient) => {
               return (
                 <li key={ingredient.name}>
-                  {ingredient.name} / {ingredient.quantity}
+                  {ingredient.name} {ingredient.quantity && `/ ${ingredient.quantity}`}
                 </li>
               );
             })}
