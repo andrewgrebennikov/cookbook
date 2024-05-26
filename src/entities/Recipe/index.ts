@@ -1,7 +1,6 @@
 export type { RecipeSchema } from './model/types/recipeSchema';
 export type { Recipe } from './model/types/recipe';
-export { RecipeDetails } from './ui/RecipeDetails/RecipeDetails';
-export { RecipeForm } from './ui/RecipeForm/RecipeForm';
+export { RecipeDetails } from './ui/RecipeDetails';
 export { RecipeDifficulty } from './model/consts/recipeConsts';
 export { fetchRecipeData } from './model/services/fetchRecipeData/fetchRecipeData';
 export { recipeReducer } from './model/slice/recipeSlice';

@@ -1,9 +1,11 @@
-import { ChangeEvent, SyntheticEvent } from 'react';
+import { ChangeEvent, SyntheticEvent, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { getRouteMain } from '@/shared/consts/router';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { Button } from '@/shared/ui/Button/Button';
+import { Input } from '@/shared/ui/Input/Input';
 
 import { getLoginError } from '../model/selectors/getLoginError/getLoginError';
 import { getLoginIsLoading } from '../model/selectors/getLoginIsLoading/getLoginIsLoading';
@@ -25,13 +27,19 @@ export const LoginForm = (props: ILoginFormProps) => {
   const isLoading = useSelector(getLoginIsLoading);
   const error = useSelector(getLoginError);
 
-  const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    dispatch(loginActions.setUsername(event.target.value));
-  };
+  const handleUsernameChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      dispatch(loginActions.setUsername(event.target.value));
+    },
+    [dispatch],
+  );
 
-  const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    dispatch(loginActions.setPassword(event.target.value));
-  };
+  const handlePasswordChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      dispatch(loginActions.setPassword(event.target.value));
+    },
+    [dispatch],
+  );
 
   const handleLoginFormSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
@@ -43,39 +51,35 @@ export const LoginForm = (props: ILoginFormProps) => {
   };
 
   return (
-    <form onSubmit={handleLoginFormSubmit}>
+    <form onSubmit={handleLoginFormSubmit} className={className}>
       <fieldset>
         <legend>Вход</legend>
-        <div className="mb-3">
-          <label htmlFor="login" className="form-label">
-            Логин
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="login"
-            onChange={handleUsernameChange}
-            value={username}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            Пароль
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            onChange={handlePasswordChange}
-            value={password}
-            required
-          />
-        </div>
-        {error && <div className="text-danger mb-3">Вы ввели неверный логин или пароль</div>}
-        <button type="submit" className="btn btn-primary" disabled={isLoading}>
+        <Input
+          className="mb-3"
+          label="Логин"
+          type="text"
+          id="login"
+          onChange={handleUsernameChange}
+          value={username}
+          required
+        />
+        <Input
+          className="mb-3"
+          label="Пароль"
+          type="password"
+          id="password"
+          onChange={handlePasswordChange}
+          value={password}
+          required
+        />
+        {error && (
+          <div className="alert alert-danger" role="alert">
+            Вы ввели неверный логин или пароль
+          </div>
+        )}
+        <Button type="submit" disabled={isLoading}>
           Отправить
-        </button>
+        </Button>
       </fieldset>
     </form>
   );

@@ -2,15 +2,15 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
-import { Recipe } from '@/entities/Recipe';
+import { getFormData } from '@/features/RecipeForm';
 
-import { getEditFormData } from '../../selectors/getEditFormData/getEditFormData';
+import { Recipe } from '@/entities/Recipe';
 
 export const updateRecipe = createAsyncThunk<Recipe, string | undefined, ThunkConfig<string>>(
   'recipe/updateRecipe',
   async (recipeId, thunkAPI) => {
     const { rejectWithValue, extra, getState } = thunkAPI;
-    const formData = getEditFormData(getState());
+    const formData = getFormData(getState());
 
     try {
       if (!recipeId) {

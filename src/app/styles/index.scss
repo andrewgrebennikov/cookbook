@@ -4,8 +4,20 @@
   --bs-card-height: 100%;
 }
 
+.card-title > a,
+.card-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
 .card-title {
-  a {
+  > a {
+    height: 48px;
+
+    -webkit-line-clamp: 2;
+
     &::before {
       content: '';
       position: absolute;
@@ -15,11 +27,7 @@
 }
 
 .card-text {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-
-  text-overflow: ellipsis;
+  height: 72px;
 
   -webkit-line-clamp: 3;
 }

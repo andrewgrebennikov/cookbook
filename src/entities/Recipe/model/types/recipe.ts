@@ -1,9 +1,14 @@
 import { RecipeDifficulty } from '../consts/recipeConsts';
 
-export interface Ingredient {
+interface AltIngredient {
   name: string;
   quantity: string;
-  alternatives: string[];
+}
+
+interface Ingredient {
+  name: string;
+  quantity: string;
+  alternatives: AltIngredient[];
 }
 
 export interface Recipe {

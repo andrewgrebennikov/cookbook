@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, memo } from 'react';
 
 interface IRecipesSearchProps {
   className?: string;
@@ -6,7 +6,7 @@ interface IRecipesSearchProps {
   onSearchChange: (search: string) => void;
 }
 
-export const RecipesSearch = (props: IRecipesSearchProps) => {
+export const RecipesSearch = memo((props: IRecipesSearchProps) => {
   const { className, search, onSearchChange } = props;
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -21,4 +21,4 @@ export const RecipesSearch = (props: IRecipesSearchProps) => {
       <input type="search" className="form-control" id="search" value={search} onChange={handleChange} />
     </div>
   );
-};
+});

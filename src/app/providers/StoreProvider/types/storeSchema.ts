@@ -1,6 +1,7 @@
 import { LoginByUsernameSchema } from '@/features/LoginByUsername';
 import { RecipeAddFormSchema } from '@/features/RecipeAddForm';
 import { RecipeEditFormSchema } from '@/features/RecipeEditForm';
+import { RecipeFormSchema } from '@/features/RecipeForm';
 import { RecipesSchema } from '@/features/RecipesList';
 
 import { RecipeSchema } from '@/entities/Recipe';
@@ -13,6 +14,7 @@ export interface StoreSchema {
   login?: LoginByUsernameSchema;
   recipe?: RecipeSchema;
   recipes?: RecipesSchema;
+  recipeForm?: RecipeFormSchema;
   recipeAddForm?: RecipeAddFormSchema;
   recipeEditForm?: RecipeEditFormSchema;
 }
