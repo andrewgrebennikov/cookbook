@@ -2,10 +2,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
-import { getFormData } from '@/features/RecipeForm';
-
 import { Recipe } from '@/entities/Recipe';
 import { getAuthData } from '@/entities/User';
+
+import { getFormData } from '../../selectors/getFormData/getFormData';
 
 export const addNewRecipe = createAsyncThunk<Recipe, void, ThunkConfig<string>>(
   'recipe/addNewRecipe',

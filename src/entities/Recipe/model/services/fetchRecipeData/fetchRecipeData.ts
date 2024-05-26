@@ -2,8 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
-import { recipeFormActions } from '@/features/RecipeForm';
-
 import { Recipe } from '../../types/recipe';
 
 export const fetchRecipeData = createAsyncThunk<Recipe, string | undefined, ThunkConfig<string>>(
@@ -21,8 +19,6 @@ export const fetchRecipeData = createAsyncThunk<Recipe, string | undefined, Thun
       if (!response.data) {
         throw new Error();
       }
-
-      dispatch(recipeFormActions.setForm(response.data));
 
       return response.data;
     } catch (error) {

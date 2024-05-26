@@ -2,8 +2,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RecipesCategoryField } from '@/features/RecipesCategory';
 
-import { Recipe, RecipeDifficulty } from '@/entities/Recipe';
+import { fetchRecipeData, Recipe, RecipeDifficulty } from '@/entities/Recipe';
 
+import { addNewRecipe } from '../services/addNewRecipe/addNewRecipe';
+import { updateRecipe } from '../services/updateRecipe/updateRecipe';
 import { RecipeFormSchema } from '../types/recipeFormSchema';
 
 const initialState: RecipeFormSchema = {
@@ -24,6 +26,8 @@ const initialState: RecipeFormSchema = {
     category: RecipesCategoryField.ALL,
     baseIngredients: [],
   },
+  isLoading: false,
+  error: undefined,
 };
 
 export const recipeFormSlice = createSlice({
@@ -117,9 +121,43 @@ export const recipeFormSlice = createSlice({
     resetForm: (state) => {
       state.formData = initialState.formData;
     },
-    setForm: (state, action: PayloadAction<Recipe>) => {
-      state.formData = action.payload;
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchRecipeData.pending, (state) => {
+        state.error = undefined;
+        state.isLoading = true;
+      })
+      .addCase(fetchRecipeData.fulfilled, (state, action: PayloadAction<Recipe>) => {
+        state.isLoading = false;
+        state.formData = action.payload;
+      })
+      .addCase(fetchRecipeData.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(addNewRecipe.pending, (state) => {
+        state.error = undefined;
+        state.isLoading = true;
+      })
+      .addCase(addNewRecipe.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(addNewRecipe.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(updateRecipe.pending, (state) => {
+        state.error = undefined;
+        state.isLoading = true;
+      })
+      .addCase(updateRecipe.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(updateRecipe.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   },
 });
 

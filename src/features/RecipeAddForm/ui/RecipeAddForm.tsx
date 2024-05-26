@@ -1,13 +1,16 @@
 import { SyntheticEvent } from 'react';
 import { useSelector } from 'react-redux';
 
-import { getFormData, RecipeForm, recipeFormActions } from '@/features/RecipeForm';
+import {
+  getFormData,
+  RecipeForm,
+  recipeFormActions,
+  addNewRecipe,
+  getFormIsLoading,
+  getFormError,
+} from '@/features/RecipeForm';
 
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
-
-import { getAddFormError } from '../model/selectors/getAddFormError/getAddFormError';
-import { getAddFormIsLoading } from '../model/selectors/getAddFormIsLoading/getAddFormIsLoading';
-import { addNewRecipe } from '../model/services/addNewRecipe/addNewRecipe';
 
 interface IRecipeAddFormProps {
   className?: string;
@@ -17,8 +20,8 @@ export const RecipeAddForm = (props: IRecipeAddFormProps) => {
   const { className } = props;
   const dispatch = useAppDispatch();
   const formData = useSelector(getFormData);
-  const isLoading = useSelector(getAddFormIsLoading);
-  const error = useSelector(getAddFormError);
+  const isLoading = useSelector(getFormIsLoading);
+  const error = useSelector(getFormError);
 
   const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
