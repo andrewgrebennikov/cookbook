@@ -44,7 +44,7 @@ export const recipesListSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchRecipesData.pending, (state, action) => {
+      .addCase(fetchRecipesData.pending, (state) => {
         state.error = undefined;
         state.isLoading = true;
       })
