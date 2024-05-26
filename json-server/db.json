@@ -2,6 +2,7 @@
   "recipes": [
     {
       "id": "1",
+      "category": "Паста и пиццы",
       "title": "Пицца Маргарита",
       "image": "/images/1.jpg",
       "likes": 1500,
@@ -188,6 +189,7 @@
     },
     {
       "id": "3",
+      "category": "Салаты",
       "title": "Цезарь салат",
       "image": "/images/3.jpeg",
       "likes": 3200,
@@ -372,6 +374,7 @@
     },
     {
       "id": "5",
+      "category": "Напитки",
       "title": "Смузи с ягодами",
       "image": "/images/5.jpg",
       "likes": 1800,
@@ -459,6 +462,7 @@
     },
     {
       "id": "7",
+      "category": "Супы",
       "title": "Томатный суп",
       "image": "/images/7.jpg",
       "likes": 1500,
@@ -552,6 +556,7 @@
     },
     {
       "id": "9",
+      "category": "Паста и пиццы",
       "title": "Паста Карбонара",
       "image": "/images/9.jpg",
       "likes": 3000,

@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
+import { RecipesCategory, RecipesCategoryField, getRecipesCategory } from '@/features/RecipesCategory';
 import { fetchRecipesData, recipesActions } from '@/features/RecipesList';
 import { getRecipesOrder, RecipesOrder, RecipesOrderField } from '@/features/RecipesOrder';
 import { getRecipesSearch, RecipesSearch } from '@/features/RecipesSearch';
@@ -21,6 +22,7 @@ export const Filters = (props: IFiltersProps) => {
   const search = useSelector(getRecipesSearch);
   const order = useSelector(getRecipesOrder);
   const sort = useSelector(getRecipesSort);
+  const category = useSelector(getRecipesCategory);
 
   const fetchRecipes = useCallback(() => {
     dispatch(fetchRecipesData());
@@ -65,11 +67,25 @@ export const Filters = (props: IFiltersProps) => {
     [debouncedFetchRecipes, dispatch, searchParams, setSearchParams],
   );
 
+  const handleCategoryChange = useCallback(
+    (newCategory: RecipesCategoryField) => {
+      const isCategoryAll = newCategory === RecipesCategoryField.ALL;
+
+      dispatch(recipesActions.setCategory(newCategory));
+      debouncedFetchRecipes();
+
+      !isCategoryAll ? searchParams.set('category', newCategory) : searchParams.delete('category');
+      setSearchParams(searchParams);
+    },
+    [debouncedFetchRecipes, dispatch, searchParams, setSearchParams],
+  );
+
   return (
     <>
       <RecipesSearch onSearchChange={handleSearchChange} search={search} />
       <RecipesSort onSortChange={handleSortChange} sort={sort} />
       <RecipesOrder onOrderChange={handleOrderChange} order={order} />
+      <RecipesCategory onCategoryChange={handleCategoryChange} category={category} />
     </>
   );
 };

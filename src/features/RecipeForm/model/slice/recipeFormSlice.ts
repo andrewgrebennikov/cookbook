@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { Recipe } from '@/entities/Recipe';
+import { RecipesCategoryField } from '@/features/RecipesCategory';
+
+import { Recipe, RecipeDifficulty } from '@/entities/Recipe';
 
 import { RecipeFormSchema } from '../types/recipeFormSchema';
 
@@ -18,7 +20,8 @@ const initialState: RecipeFormSchema = {
       },
     ],
     description: '',
-    difficulty: undefined,
+    difficulty: RecipeDifficulty.NONE,
+    category: RecipesCategoryField.ALL,
     baseIngredients: [],
   },
 };

@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
+import { RecipesCategoryField, getRecipesCategory } from '@/features/RecipesCategory';
 import { getRecipesOrder } from '@/features/RecipesOrder';
 import { getRecipesSearch } from '@/features/RecipesSearch';
 import { getRecipesSort } from '@/features/RecipesSort';
@@ -20,6 +21,7 @@ export const fetchRecipesData = createAsyncThunk<Recipe[], void, ThunkConfig<str
     const page = getRecipesPage(getState());
     const sort = getRecipesSort(getState());
     const order = getRecipesOrder(getState());
+    const category = getRecipesCategory(getState());
     const search = getRecipesSearch(getState());
 
     try {
@@ -29,6 +31,7 @@ export const fetchRecipesData = createAsyncThunk<Recipe[], void, ThunkConfig<str
           _limit: limit,
           _sort: sort,
           _order: order,
+          category: category === RecipesCategoryField.ALL ? undefined : category,
           q: search.length ? search : undefined,
         },
       });

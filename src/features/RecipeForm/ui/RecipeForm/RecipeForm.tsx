@@ -1,5 +1,7 @@
 import { ChangeEvent, SyntheticEvent, useCallback, useMemo } from 'react';
 
+import { RecipesCategoryField } from '@/features/RecipesCategory';
+
 import { Recipe, RecipeDifficulty } from '@/entities/Recipe';
 
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
@@ -27,19 +29,48 @@ export const RecipeForm = (props: IRecipeFormProps) => {
   const { className, isLoading, error, formData, onSubmit, formTitle } = props;
   const dispatch = useAppDispatch();
 
-  const options = useMemo(
+  const optionsDifficulty = useMemo(
     () => [
       {
+        id: 1,
         value: RecipeDifficulty.EASY,
         name: 'Легко',
       },
       {
+        id: 2,
         value: RecipeDifficulty.NORMAL,
         name: 'Средне',
       },
       {
+        id: 3,
         value: RecipeDifficulty.HARD,
         name: 'Трудно',
+      },
+    ],
+    [],
+  );
+
+  const optionsCategory = useMemo(
+    () => [
+      {
+        id: 1,
+        value: RecipesCategoryField.SALAD,
+        name: 'Салаты',
+      },
+      {
+        id: 2,
+        value: RecipesCategoryField.SOUP,
+        name: 'Супы',
+      },
+      {
+        id: 3,
+        value: RecipesCategoryField.PASTA,
+        name: 'Паста и пицца',
+      },
+      {
+        id: 4,
+        value: RecipesCategoryField.DRINK,
+        name: 'Напитки',
       },
     ],
     [],
@@ -76,6 +107,13 @@ export const RecipeForm = (props: IRecipeFormProps) => {
   const handleDifficultyChange = useCallback(
     (event: ChangeEvent<HTMLSelectElement>) => {
       dispatch(recipeFormActions.changeField({ difficulty: event.target.value as RecipeDifficulty }));
+    },
+    [dispatch],
+  );
+
+  const handleCategoryChange = useCallback(
+    (event: ChangeEvent<HTMLSelectElement>) => {
+      dispatch(recipeFormActions.changeField({ category: event.target.value as RecipesCategoryField }));
     },
     [dispatch],
   );
@@ -308,14 +346,24 @@ export const RecipeForm = (props: IRecipeFormProps) => {
         </div>
         <Select
           className="mb-3"
-          label="Сложность приготовления"
+          label="Выберите сложность"
           defaultLabel="Выберите сложность"
           id="difficulty"
           name="difficulty"
           value={formData?.difficulty}
           onChange={handleDifficultyChange}
-          options={options}
+          options={optionsDifficulty}
           required
+        />
+        <Select
+          className="mb-3"
+          label="Выберите категорию"
+          defaultLabel="Выберите категорию"
+          id="category"
+          name="category"
+          value={formData?.category}
+          onChange={handleCategoryChange}
+          options={optionsCategory}
         />
         <Button type="submit">Отправить рецепт</Button>
       </fieldset>

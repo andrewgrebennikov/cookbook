@@ -1,3 +1,5 @@
+import { RecipesCategoryField } from '@/features/RecipesCategory';
+
 import { RecipeDifficulty } from '../consts/recipeConsts';
 
 interface AltIngredient {
@@ -22,4 +24,5 @@ export interface Recipe {
   baseIngredients?: string[];
   difficulty?: RecipeDifficulty;
   userId?: string;
+  category?: RecipesCategoryField;
 }

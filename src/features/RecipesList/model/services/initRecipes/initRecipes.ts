@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
+import { RecipesCategoryField } from '@/features/RecipesCategory';
 import { RecipesOrderField } from '@/features/RecipesOrder';
 import { RecipesSortField } from '@/features/RecipesSort';
 
@@ -18,6 +19,7 @@ export const initRecipes = createAsyncThunk<void, URLSearchParams, ThunkConfig<s
     if (!inited) {
       const sort = searchParams.get('sort') as RecipesSortField;
       const order = searchParams.get('order') as RecipesOrderField;
+      const category = searchParams.get('category') as RecipesCategoryField;
       const search = searchParams.get('search');
 
       if (sort) {
@@ -26,6 +28,10 @@ export const initRecipes = createAsyncThunk<void, URLSearchParams, ThunkConfig<s
 
       if (order) {
         dispatch(recipesActions.setOrder(order));
+      }
+
+      if (category) {
+        dispatch(recipesActions.setCategory(category));
       }
 
       if (search) {

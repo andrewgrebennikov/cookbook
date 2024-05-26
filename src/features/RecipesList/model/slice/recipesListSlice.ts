@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { RecipesCategoryField } from '@/features/RecipesCategory';
 import { RecipesOrderField } from '@/features/RecipesOrder';
 import { RecipesSortField } from '@/features/RecipesSort';
 
@@ -16,6 +17,7 @@ const initialState: RecipesSchema = {
   limit: 20,
   order: RecipesOrderField.ASC,
   sort: RecipesSortField.LIKES,
+  category: RecipesCategoryField.ALL,
   search: '',
   _inited: false,
 };
@@ -29,6 +31,9 @@ export const recipesListSlice = createSlice({
     },
     setSort: (state, action: PayloadAction<RecipesSortField>) => {
       state.sort = action.payload;
+    },
+    setCategory: (state, action: PayloadAction<RecipesCategoryField>) => {
+      state.category = action.payload;
     },
     setSearch: (state, action: PayloadAction<string>) => {
       state.search = action.payload;

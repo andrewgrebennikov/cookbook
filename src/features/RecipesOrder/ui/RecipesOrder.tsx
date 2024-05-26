@@ -17,10 +17,12 @@ export const RecipesOrder = memo((props: IRecipesOrderProps) => {
   const options = useMemo(
     () => [
       {
+        id: 1,
         value: RecipesOrderField.ASC,
         name: 'По возрастанию',
       },
       {
+        id: 2,
         value: RecipesOrderField.DESC,
         name: 'По убыванию',
       },

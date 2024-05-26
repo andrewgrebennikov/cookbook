@@ -1,3 +1,4 @@
+import { RecipesCategoryField } from '@/features/RecipesCategory';
 import { RecipesOrderField } from '@/features/RecipesOrder';
 import { RecipesSortField } from '@/features/RecipesSort';
 
@@ -11,6 +12,7 @@ export interface RecipesSchema {
   limit: number;
   order: RecipesOrderField;
   sort: RecipesSortField;
+  category: RecipesCategoryField;
   search: string;
   _inited: boolean;
 }
