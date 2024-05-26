@@ -7,7 +7,7 @@ import { Recipe } from '../../types/recipe';
 export const fetchRecipeData = createAsyncThunk<Recipe, string | undefined, ThunkConfig<string>>(
   'recipe/fetchRecipeData',
   async (recipeId, thunkAPI) => {
-    const { rejectWithValue, extra, dispatch } = thunkAPI;
+    const { rejectWithValue, extra } = thunkAPI;
 
     try {
       if (!recipeId) {

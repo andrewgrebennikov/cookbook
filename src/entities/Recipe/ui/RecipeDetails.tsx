@@ -1,4 +1,4 @@
-import { MouseEvent, useEffect } from 'react';
+import { MouseEvent, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -34,14 +34,17 @@ export const RecipeDetails = (props: IRecipeDetailsProps) => {
   const error = useSelector(getRecipeError);
   const canEdit = useSelector(getCanEditRecipe);
 
-  const handleRemoveRecipe = async (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    const result = await dispatch(removeRecipe(recipeId));
+  const handleRemoveRecipe = useCallback(
+    async (event: MouseEvent<HTMLButtonElement>) => {
+      event.preventDefault();
+      const result = await dispatch(removeRecipe(recipeId));
 
-    if (result.meta.requestStatus === 'fulfilled') {
-      navigate(getRouteMain());
-    }
-  };
+      if (result.meta.requestStatus === 'fulfilled') {
+        navigate(getRouteMain());
+      }
+    },
+    [dispatch, navigate, recipeId],
+  );
 
   useEffect(() => {
     dispatch(fetchRecipeData(recipeId));

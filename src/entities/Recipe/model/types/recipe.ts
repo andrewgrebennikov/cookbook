@@ -2,12 +2,12 @@ import { RecipesCategoryField } from '@/features/RecipesCategory';
 
 import { RecipeDifficulty } from '../consts/recipeConsts';
 
-interface AltIngredient {
+export interface AltIngredient {
   name: string;
   quantity: string;
 }
 
-interface Ingredient {
+export interface Ingredient {
   name: string;
   quantity: string;
   alternatives: AltIngredient[];

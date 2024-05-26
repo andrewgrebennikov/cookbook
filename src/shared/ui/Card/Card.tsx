@@ -16,7 +16,7 @@ interface ICardProps {
 }
 
 export const Card = (props: ICardProps) => {
-  const { className, image, title, id, description, difficulty, likes, link, baseIngredients } = props;
+  const { className, image, title, description, difficulty, likes, link, baseIngredients } = props;
 
   return (
     <article className={cx('card', className)}>
