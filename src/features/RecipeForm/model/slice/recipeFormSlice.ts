@@ -34,14 +34,14 @@ export const recipeFormSlice = createSlice({
       state.formData.cookingSteps?.push('');
     },
     removeStep: (state, action: PayloadAction<number>) => {
-      if (state.formData) {
-        state.formData.cookingSteps = state.formData.cookingSteps?.filter((_, index) => index !== action.payload);
-      }
+      state.formData.cookingSteps = state.formData.cookingSteps?.filter((_, index) => index !== action.payload);
     },
     changeStep: (state, action: PayloadAction<{ step: number; value: string }>) => {
       const { value, step } = action.payload;
 
-      state.formData.cookingSteps && (state.formData.cookingSteps[step] = value);
+      if (state.formData.cookingSteps) {
+        state.formData.cookingSteps[step] = value;
+      }
     },
     addIngredient: (state) => {
       state.formData.ingredients?.push({
@@ -56,36 +56,30 @@ export const recipeFormSlice = createSlice({
       });
     },
     removeIngredient: (state, action: PayloadAction<number>) => {
-      if (state.formData) {
-        state.formData.ingredients = state.formData.ingredients?.filter((_, index) => index !== action.payload);
-      }
+      state.formData.ingredients = state.formData.ingredients?.filter((_, index) => index !== action.payload);
     },
     changeIngredient: (state, action: PayloadAction<{ index: number; field: string; value: string }>) => {
       const { index, field, value } = action.payload;
 
-      if (state.formData) {
-        const newIngredients = [...(state.formData.ingredients ?? [])];
-
-        newIngredients[index] = {
-          ...newIngredients[index],
+      if (state.formData.ingredients) {
+        state.formData.ingredients[index] = {
+          ...state.formData.ingredients[index],
           [field]: value,
         };
-
-        state.formData.ingredients = newIngredients;
       }
     },
     addBaseIngredient: (state) => {
       state.formData.baseIngredients?.push('');
     },
     removeBaseIngredient: (state, action: PayloadAction<number>) => {
-      if (state.formData) {
-        state.formData.baseIngredients = state.formData.baseIngredients?.filter((_, index) => index !== action.payload);
-      }
+      state.formData.baseIngredients = state.formData.baseIngredients?.filter((_, index) => index !== action.payload);
     },
     changeBaseIngredient: (state, action: PayloadAction<{ index: number; value: string }>) => {
       const { value, index } = action.payload;
 
-      state.formData.baseIngredients && (state.formData.baseIngredients[index] = value);
+      if (state.formData.baseIngredients) {
+        state.formData.baseIngredients[index] = value;
+      }
     },
     changeAltIngredient: (
       state,
@@ -93,46 +87,28 @@ export const recipeFormSlice = createSlice({
     ) => {
       const { value, field, index, altIndex } = action.payload;
 
-      if (state.formData) {
-        const newIngredients = [...(state.formData.ingredients ?? [])];
-
-        if (newIngredients) {
-          const newAlt = newIngredients[index].alternatives;
-
-          newAlt[altIndex] = {
-            ...newAlt[altIndex],
-            [field]: value,
-          };
-        }
-
-        state.formData.ingredients = newIngredients;
+      if (state.formData.ingredients) {
+        state.formData.ingredients[index].alternatives[altIndex] = {
+          ...state.formData.ingredients[index].alternatives[altIndex],
+          [field]: value,
+        };
       }
     },
     removeAltIngredient: (state, action: PayloadAction<{ index: number; altIndex: number }>) => {
       const { index, altIndex } = action.payload;
 
-      if (state.formData) {
-        const newIngredients = [...(state.formData.ingredients ?? [])];
-        const newAlternatives = newIngredients[index].alternatives.filter((_, index) => index !== altIndex);
-
-        newIngredients[index] = {
-          ...newIngredients[index],
-          alternatives: newAlternatives,
-        };
-
-        state.formData.ingredients = newIngredients;
+      if (state.formData.ingredients) {
+        state.formData.ingredients[index].alternatives = state.formData.ingredients[index].alternatives.filter(
+          (_, index) => index !== altIndex,
+        );
       }
     },
     addAltIngredient: (state, action: PayloadAction<number>) => {
-      if (state.formData) {
-        const newIngredients = [...(state.formData.ingredients ?? [])];
-
-        newIngredients[action.payload].alternatives.push({
+      if (state.formData.ingredients) {
+        state.formData.ingredients[action.payload].alternatives.push({
           name: '',
           quantity: '',
         });
-
-        state.formData.ingredients = newIngredients;
       }
     },
     resetForm: (state) => {
