@@ -7,6 +7,7 @@ import { getRouteMain, getRouteRecipeEdit } from '@/shared/consts/router';
 import { DynamicModuleLoader } from '@/shared/lib/components/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 import { ReducersList } from '@/shared/lib/types/reducersList';
+import { AppImage } from '@/shared/ui/AppImage/AppImage';
 import { Button, ButtonVariant } from '@/shared/ui/Button/Button';
 
 import { getCanEditRecipe } from '../model/selectors/getCanEditRecipe/getCanEditRecipe';
@@ -71,12 +72,22 @@ export const RecipeDetails = (props: IRecipeDetailsProps) => {
             </div>
           )}
           <h1 className="mb-3">{recipeData.title}</h1>
-          <img
+          <AppImage
             width="600"
             height="400"
             className="object-fit-cover border rounded mb-3 d-block"
             src={recipeData.image}
             alt={recipeData.title}
+            errorFallback={
+              <img
+                src="https://placehold.co/600x400"
+                width="600"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                alt={recipeData.title}
+              />
+            }
           />
           {recipeData.description ? (
             <>

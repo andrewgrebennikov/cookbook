@@ -62,7 +62,7 @@ stylelint для проверки файлов со стилями, prettier д�
 
 ----
 
-### Работа с данными
+## Работа с данными
 
 Взаимодействие с данными осуществляется с помощью axios.
 В качестве сервера используется json-server
@@ -82,6 +82,7 @@ stylelint для проверки файлов со стилями, prettier д�
 - [RecipeAddForm](/src/features/RecipeAddForm)
 - [RecipeEditForm](/src/features/RecipeEditForm)
 - [RecipeForm](/src/features/RecipeForm)
+- [RecipesCategory](/src/features/RecipesCategory)
 - [RecipesList](/src/features/RecipesList)
 - [RecipesOrder](/src/features/RecipesOrder)
 - [RecipesSearch](/src/features/RecipesSearch)

@@ -1,6 +1,8 @@
 import { cx } from 'classix';
 import { Link, Path } from 'react-router-dom';
 
+import { AppImage } from '@/shared/ui/AppImage/AppImage';
+
 import IconLike from '../../assets/icons/icon-like.svg';
 
 interface ICardProps {
@@ -20,13 +22,22 @@ export const Card = (props: ICardProps) => {
 
   return (
     <article className={cx('card', className)}>
-      <img
+      <AppImage
         width="304"
         height="200"
         src={image}
         className="card-img-top object-fit-lg-cover"
         alt={title}
-        loading="lazy"
+        errorFallback={
+          <img
+            src="https://placehold.co/304x200"
+            width="304"
+            height="200"
+            loading="lazy"
+            decoding="async"
+            alt={title}
+          />
+        }
       />
       <div className="card-body d-flex flex-column">
         {title ? (
