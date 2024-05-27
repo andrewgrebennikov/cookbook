@@ -1,9 +1,8 @@
 import { cx } from 'classix';
 import { Link, Path } from 'react-router-dom';
 
-import { AppImage } from '@/shared/ui/AppImage/AppImage';
-
 import IconLike from '../../assets/icons/icon-like.svg';
+import { AppImage } from '../AppImage/AppImage';
 
 interface ICardProps {
   id?: string;
