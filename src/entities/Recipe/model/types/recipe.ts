@@ -13,11 +13,16 @@ export interface Ingredient {
   alternatives: AltIngredient[];
 }
 
+export interface Like {
+  total: number;
+  userLikes: string[];
+}
+
 export interface Recipe {
   id?: string;
   title?: string;
   image?: string;
-  likes?: number;
+  likes?: Like;
   description?: string;
   cookingSteps?: string[];
   ingredients?: Ingredient[];

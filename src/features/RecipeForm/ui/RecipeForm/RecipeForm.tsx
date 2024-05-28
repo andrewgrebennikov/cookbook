@@ -92,7 +92,7 @@ export const RecipeForm = (props: IRecipeFormProps) => {
 
   const handleLikesChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      dispatch(recipeFormActions.changeField({ likes: Number(event.target.value) }));
+      dispatch(recipeFormActions.changeLikeTotal(Number(event.target.value)));
     },
     [dispatch],
   );
@@ -307,7 +307,7 @@ export const RecipeForm = (props: IRecipeFormProps) => {
           type="number"
           name="likes"
           id="likes"
-          value={formData?.likes || ''}
+          value={formData?.likes?.total || ''}
           onChange={handleLikesChange}
         />
         <Textarea

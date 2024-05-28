@@ -11,7 +11,10 @@ import { RecipeFormSchema } from '../types/recipeFormSchema';
 const initialState: RecipeFormSchema = {
   formData: {
     title: '',
-    likes: 0,
+    likes: {
+      total: 0,
+      userLikes: [],
+    },
     image: '',
     cookingSteps: [''],
     ingredients: [
@@ -34,6 +37,11 @@ export const recipeFormSlice = createSlice({
   name: 'recipe/recipeForm',
   initialState,
   reducers: {
+    changeLikeTotal: (state, action: PayloadAction<number>) => {
+      if (state.formData.likes) {
+        state.formData.likes.total = action.payload;
+      }
+    },
     changeField: (state, action: PayloadAction<Recipe>) => {
       state.formData = { ...state.formData, ...action.payload };
     },

@@ -1,5 +1,5 @@
 export type { RecipeSchema } from './model/types/recipeSchema';
-export type { Recipe } from './model/types/recipe';
+export type { Recipe, Like } from './model/types/recipe';
 export { RecipeDetails } from './ui/RecipeDetails';
 export { RecipeDifficulty } from './model/consts/recipeConsts';
 export { fetchRecipeData } from './model/services/fetchRecipeData/fetchRecipeData';
