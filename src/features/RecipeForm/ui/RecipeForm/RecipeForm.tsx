@@ -4,7 +4,7 @@ import { RecipesCategoryField } from '@/features/RecipesCategory';
 
 import { Recipe, RecipeDifficulty } from '@/entities/Recipe';
 
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { Button, ButtonVariant } from '@/shared/ui/Button/Button';
 import { Input } from '@/shared/ui/Input/Input';
 import { Select } from '@/shared/ui/Select/Select';

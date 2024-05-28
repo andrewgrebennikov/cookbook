@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { getAuthData, userActions } from '@/entities/User';
 
 import { getRouteLogin, getRouteMain, getRouteRecipeCreate } from '@/shared/consts/router';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 
 interface IHeaderProps {
   className?: string;

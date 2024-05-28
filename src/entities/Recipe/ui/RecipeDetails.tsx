@@ -2,11 +2,11 @@ import { MouseEvent, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
+import { DynamicModuleLoader, ReducersList } from '@/app/providers/StoreProvider';
+
 import IconLike from '@/shared/assets/icons/icon-like.svg';
 import { getRouteMain, getRouteRecipeEdit } from '@/shared/consts/router';
-import { DynamicModuleLoader } from '@/shared/lib/components/DynamicModuleLoader';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
-import { ReducersList } from '@/shared/lib/types/reducersList';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { AppImage } from '@/shared/ui/AppImage/AppImage';
 import { Button, ButtonVariant } from '@/shared/ui/Button/Button';
 
