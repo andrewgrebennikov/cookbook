@@ -2,6 +2,8 @@ import { SyntheticEvent, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { DynamicModuleLoader, ReducersList } from '@/app/providers/StoreProvider';
+
 import {
   getFormData,
   RecipeForm,
@@ -13,9 +15,7 @@ import {
 
 import { fetchRecipeData } from '@/entities/Recipe';
 
-import { DynamicModuleLoader } from '@/shared/lib/components/DynamicModuleLoader';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
-import { ReducersList } from '@/shared/lib/types/reducersList';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 
 interface IRecipeEditFormProps {
   className?: string;

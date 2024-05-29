@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 
 import { getAuthIsInited, userActions } from '@/entities/User';
 
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 
-import { AppRouter } from './providers/router/ui/AppRouter';
+import { AppRouter } from './providers/router';
 
 export const App = () => {
   const dispatch = useAppDispatch();

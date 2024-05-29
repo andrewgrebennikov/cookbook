@@ -1,11 +1,11 @@
 import { FC, PropsWithChildren, useEffect } from 'react';
 import { useStore } from 'react-redux';
 
-import { StoreWithManager } from '@/app/providers/StoreProvider';
-import { StoreSchemaKeys } from '@/app/providers/StoreProvider/types/storeSchema';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 
-import { ReducersList } from '../../lib/types/reducersList';
-import { useAppDispatch } from '../hooks/useAppDispatch';
+import { ReducersList } from '../../model/types/reducerManager';
+import { StoreSchemaKeys } from '../../model/types/storeSchema';
+import { StoreWithManager } from '../../model/types/storeWithManager';
 
 interface IDynamicModuleLoader {
   reducers: ReducersList;
@@ -38,5 +38,5 @@ export const DynamicModuleLoader: FC<PropsWithChildren<IDynamicModuleLoader>> = 
     // eslint-disable-next-line
   }, []);
 
-  return <>{children}</>;
+  return children;
 };

@@ -1,6 +1,8 @@
 import { cx } from 'classix';
 import { Link, Path } from 'react-router-dom';
 
+import { Like } from '@/entities/Recipe';
+
 import IconLike from '../../assets/icons/icon-like.svg';
 import { AppImage } from '../AppImage/AppImage';
 
@@ -11,7 +13,7 @@ interface ICardProps {
   title?: string;
   description?: string;
   difficulty?: string;
-  likes?: number;
+  likes?: Like;
   link?: string | Partial<Path>;
   baseIngredients?: string[];
 }
@@ -61,7 +63,7 @@ export const Card = (props: ICardProps) => {
           {difficulty ? <div>Сложность - {difficulty}</div> : null}
           {likes ? (
             <div>
-              <IconLike width="16" height="16" /> - {likes}
+              <IconLike width="16" height="16" /> - {likes?.total}
             </div>
           ) : null}
         </div>

@@ -1,7 +1,6 @@
-import { LoginForm, loginReducer } from '@/features/LoginByUsername';
+import { DynamicModuleLoader, ReducersList } from '@/app/providers/StoreProvider';
 
-import { DynamicModuleLoader } from '@/shared/lib/components/DynamicModuleLoader';
-import { ReducersList } from '@/shared/lib/types/reducersList';
+import { LoginForm, loginReducer } from '@/features/LoginByUsername';
 
 const reducers: ReducersList = { login: loginReducer };
 

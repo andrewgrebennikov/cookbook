@@ -2,6 +2,7 @@ import path from 'path';
 
 import { defineConfig } from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
+import { pluginSass } from '@rsbuild/plugin-sass';
 import { pluginSvgr } from '@rsbuild/plugin-svgr';
 import { pluginTypeCheck } from '@rsbuild/plugin-type-check';
 
@@ -17,6 +18,7 @@ export default defineConfig(({ envMode }) => {
         },
       }),
       pluginTypeCheck(),
+      pluginSass(),
     ],
     html: {
       template: path.resolve(__dirname, 'public', 'index.html'),

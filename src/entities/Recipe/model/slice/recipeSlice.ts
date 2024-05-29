@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { fetchRecipeData } from '../services/fetchRecipeData/fetchRecipeData';
+import { likeRecipe } from '../services/likeRecipe/likeRecipe';
 import { removeRecipe } from '../services/removeRecipe/removeRecipe';
 import { Recipe } from '../types/recipe';
 import { RecipeSchema } from '../types/recipeSchema';
@@ -38,6 +39,18 @@ export const recipeSlice = createSlice({
         state.recipeData = action.payload;
       })
       .addCase(removeRecipe.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(likeRecipe.pending, (state) => {
+        state.error = undefined;
+        state.isLoading = true;
+      })
+      .addCase(likeRecipe.fulfilled, (state, action: PayloadAction<Recipe>) => {
+        state.isLoading = false;
+        state.recipeData = action.payload;
+      })
+      .addCase(likeRecipe.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });

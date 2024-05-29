@@ -2,19 +2,21 @@ import { MouseEvent, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
+import { DynamicModuleLoader, ReducersList } from '@/app/providers/StoreProvider';
+
 import IconLike from '@/shared/assets/icons/icon-like.svg';
 import { getRouteMain, getRouteRecipeEdit } from '@/shared/consts/router';
-import { DynamicModuleLoader } from '@/shared/lib/components/DynamicModuleLoader';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
-import { ReducersList } from '@/shared/lib/types/reducersList';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { AppImage } from '@/shared/ui/AppImage/AppImage';
 import { Button, ButtonVariant } from '@/shared/ui/Button/Button';
 
 import { getCanEditRecipe } from '../model/selectors/getCanEditRecipe/getCanEditRecipe';
+import { getCanLikeRecipe } from '../model/selectors/getCanLikeRecipe/getCanLikeRecipe';
 import { getRecipeData } from '../model/selectors/getRecipeData/getRecipeData';
 import { getRecipeError } from '../model/selectors/getRecipeError/getRecipeError';
 import { getRecipeIsLoading } from '../model/selectors/getRecipeIsLoading/getRecipeIsLoading';
 import { fetchRecipeData } from '../model/services/fetchRecipeData/fetchRecipeData';
+import { likeRecipe } from '../model/services/likeRecipe/likeRecipe';
 import { removeRecipe } from '../model/services/removeRecipe/removeRecipe';
 import { recipeReducer } from '../model/slice/recipeSlice';
 
@@ -34,6 +36,7 @@ export const RecipeDetails = (props: IRecipeDetailsProps) => {
   const isLoading = useSelector(getRecipeIsLoading);
   const error = useSelector(getRecipeError);
   const canEdit = useSelector(getCanEditRecipe);
+  const canLike = useSelector(getCanLikeRecipe);
 
   const handleRemoveRecipe = useCallback(
     async (event: MouseEvent<HTMLButtonElement>) => {
@@ -46,6 +49,14 @@ export const RecipeDetails = (props: IRecipeDetailsProps) => {
     },
     [dispatch, navigate, recipeId],
   );
+
+  const handleRecipeLike = () => {
+    if (!recipeData?.likes?.total) {
+      return;
+    }
+
+    dispatch(likeRecipe({ recipeId, total: recipeData?.likes?.total + 1 }));
+  };
 
   useEffect(() => {
     dispatch(fetchRecipeData(recipeId));
@@ -141,10 +152,11 @@ export const RecipeDetails = (props: IRecipeDetailsProps) => {
               </ol>
             </>
           ) : null}
-          <div>Сложность: {recipeData.difficulty}</div>
-          <div>
-            <IconLike width="16" height="16" /> - {recipeData.likes}
+          <div className="mb-3">Сложность: {recipeData.difficulty}</div>
+          <div className="mb-3">
+            <IconLike width="16" height="16" /> - {recipeData.likes?.total}
           </div>
+          {canLike ? <Button onClick={handleRecipeLike}>Like</Button> : null}
         </>
       )}
     </DynamicModuleLoader>

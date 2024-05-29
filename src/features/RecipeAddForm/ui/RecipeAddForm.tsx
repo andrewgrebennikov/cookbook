@@ -10,7 +10,7 @@ import {
   getFormError,
 } from '@/features/RecipeForm';
 
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 
 interface IRecipeAddFormProps {
   className?: string;

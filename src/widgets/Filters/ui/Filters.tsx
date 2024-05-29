@@ -8,8 +8,8 @@ import { getRecipesOrder, RecipesOrder, RecipesOrderField } from '@/features/Rec
 import { getRecipesSearch, RecipesSearch } from '@/features/RecipesSearch';
 import { getRecipesSort, RecipesSort, RecipesSortField } from '@/features/RecipesSort';
 
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
-import { useDebounce } from '@/shared/lib/hooks/useDebounce';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
+import { useDebounce } from '@/shared/hooks/useDebounce';
 
 interface IFiltersProps {
   className?: string;
