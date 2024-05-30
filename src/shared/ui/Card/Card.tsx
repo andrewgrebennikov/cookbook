@@ -1,7 +1,7 @@
 import { cx } from 'classix';
 import { Link, Path } from 'react-router-dom';
 
-import { Like } from '@/entities/Recipe';
+import { ILike } from '@/entities/Recipe';
 
 import IconLike from '../../assets/icons/icon-like.svg';
 import { AppImage } from '../AppImage/AppImage';
@@ -13,7 +13,7 @@ interface ICardProps {
   title?: string;
   description?: string;
   difficulty?: string;
-  likes?: Like;
+  likes?: ILike;
   link?: string | Partial<Path>;
   baseIngredients?: string[];
 }

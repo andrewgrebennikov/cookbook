@@ -1,18 +1,18 @@
-import { LoginByUsernameSchema } from '@/features/LoginByUsername';
-import { RecipeFormSchema } from '@/features/RecipeForm';
-import { RecipesSchema } from '@/features/RecipesList';
+import { ILoginByUsernameSchema } from '@/features/LoginByUsername';
+import { IRecipeFormSchema } from '@/features/RecipeForm';
+import { IRecipesSchema } from '@/features/RecipesList';
 
-import { RecipeSchema } from '@/entities/Recipe';
-import { UserSchema } from '@/entities/User';
+import { IRecipeSchema } from '@/entities/Recipe';
+import { IUserSchema } from '@/entities/User';
 
-export interface StoreSchema {
+export interface IStoreSchema {
   // Cинхронные редюсеры
-  user: UserSchema;
+  user: IUserSchema;
   // Асинхронные редюсеры
-  login?: LoginByUsernameSchema;
-  recipe?: RecipeSchema;
-  recipes?: RecipesSchema;
-  recipeForm?: RecipeFormSchema;
+  login?: ILoginByUsernameSchema;
+  recipe?: IRecipeSchema;
+  recipes?: IRecipesSchema;
+  recipeForm?: IRecipeFormSchema;
 }
 
-export type StoreSchemaKeys = keyof StoreSchema;
+export type StoreSchemaKeysType = keyof IStoreSchema;

@@ -1,9 +1,9 @@
 import { cx } from 'classix';
-import { ChangeEvent, memo, useMemo } from 'react';
+import { ChangeEvent, memo } from 'react';
 
-import { Select } from '@/shared/ui/Select/Select';
+import { Select } from '@/shared/ui/Select';
 
-import { RecipesCategoryField } from '../model/consts/recipesCategoryConsts';
+import { RecipesCategoryField, RECIPES_CATEGORY_OPTIONS } from '../model/consts/recipesCategoryConsts';
 
 interface IRecipesCategoryProps {
   className?: string;
@@ -13,37 +13,6 @@ interface IRecipesCategoryProps {
 
 export const RecipesCategory = memo((props: IRecipesCategoryProps) => {
   const { className, onCategoryChange, category } = props;
-
-  const options = useMemo(
-    () => [
-      {
-        id: 1,
-        value: RecipesCategoryField.ALL,
-        name: 'Все категории',
-      },
-      {
-        id: 2,
-        value: RecipesCategoryField.DRINK,
-        name: 'Напитки',
-      },
-      {
-        id: 3,
-        value: RecipesCategoryField.PASTA,
-        name: 'Паста и пицца',
-      },
-      {
-        id: 4,
-        value: RecipesCategoryField.SOUP,
-        name: 'Супы',
-      },
-      {
-        id: 5,
-        value: RecipesCategoryField.SALAD,
-        name: 'Салаты',
-      },
-    ],
-    [],
-  );
 
   const handleCategoryChange = (event: ChangeEvent<HTMLSelectElement>) => {
     onCategoryChange(event.target.value as RecipesCategoryField);
@@ -56,7 +25,7 @@ export const RecipesCategory = memo((props: IRecipesCategoryProps) => {
       id="category"
       value={category}
       onChange={handleCategoryChange}
-      options={options}
+      options={RECIPES_CATEGORY_OPTIONS}
     />
   );
 });

@@ -1,5 +1,5 @@
-import { StoreSchema } from '@/app/providers/StoreProvider';
+import { IStoreSchema } from '@/app/providers/StoreProvider';
 
 import { RecipesOrderField } from '../../consts/recipesOrderConsts';
 
-export const getRecipesOrder = (state: StoreSchema) => state.recipes?.order || RecipesOrderField.ASC;
+export const getRecipesOrder = (state: IStoreSchema) => state.recipes?.order || RecipesOrderField.ASC;

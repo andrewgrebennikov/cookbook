@@ -1,3 +1,3 @@
-import { StoreSchema } from '@/app/providers/StoreProvider';
+import { IStoreSchema } from '@/app/providers/StoreProvider';
 
-export const getRecipesSearch = (state: StoreSchema) => state.recipes?.search || '';
+export const getRecipesSearch = (state: IStoreSchema) => state.recipes?.search || '';

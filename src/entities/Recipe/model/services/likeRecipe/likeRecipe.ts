@@ -1,16 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { ThunkConfig } from '@/app/providers/StoreProvider';
+import { IThunkConfig } from '@/app/providers/StoreProvider';
 
 import { getAuthData } from '@/entities/User';
 
 import { getRecipeData } from '../../selectors/getRecipeData/getRecipeData';
-import { Recipe } from '../../types/recipe';
+import { IRecipe } from '../../types/recipe';
 
 export const likeRecipe = createAsyncThunk<
-  Recipe,
+  IRecipe,
   { recipeId: string | undefined; total: number },
-  ThunkConfig<string>
+  IThunkConfig<string>
 >('recipe/likeRecipe', async ({ recipeId, total }, thunkAPI) => {
   const { rejectWithValue, extra, getState } = thunkAPI;
   const recipeData = getRecipeData(getState());
@@ -25,7 +25,7 @@ export const likeRecipe = createAsyncThunk<
       return rejectWithValue('Вы уже поставили лайк!');
     }
 
-    const response = await extra.api.put<Recipe>(`/recipes/${recipeId}`, {
+    const response = await extra.api.put<IRecipe>(`/recipes/${recipeId}`, {
       ...recipeData,
       likes: {
         total,

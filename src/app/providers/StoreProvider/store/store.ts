@@ -5,10 +5,10 @@ import { userReducer } from '@/entities/User';
 import { api } from '@/shared/api/api';
 
 import { createReducerManager } from '../libs/reducerManager';
-import { StoreSchema } from '../model/types/storeSchema';
+import { IStoreSchema } from '../model/types/storeSchema';
 
-export const createReduxStore = (initialState?: StoreSchema, asyncReducers?: ReducersMapObject<StoreSchema>) => {
-  const rootReducer: ReducersMapObject<StoreSchema> = {
+export const createReduxStore = (initialState?: IStoreSchema, asyncReducers?: ReducersMapObject<IStoreSchema>) => {
+  const rootReducer: ReducersMapObject<IStoreSchema> = {
     ...asyncReducers,
     user: userReducer,
   };
@@ -16,7 +16,7 @@ export const createReduxStore = (initialState?: StoreSchema, asyncReducers?: Red
   const reducerManager = createReducerManager(rootReducer);
 
   const store = configureStore({
-    reducer: reducerManager.reduce as Reducer<CombinedState<StoreSchema>>,
+    reducer: reducerManager.reduce as Reducer<CombinedState<IStoreSchema>>,
     devTools: __IS_DEV__,
     preloadedState: initialState,
     middleware: (getDefaultMiddleware) =>

@@ -1,3 +1,3 @@
-import { StoreSchema } from '@/app/providers/StoreProvider';
+import { IStoreSchema } from '@/app/providers/StoreProvider';
 
-export const getRecipeError = (state: StoreSchema) => state.recipe?.error;
+export const getRecipeError = (state: IStoreSchema) => state.recipe?.error;

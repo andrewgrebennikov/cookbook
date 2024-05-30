@@ -1,7 +1,7 @@
 import { ChangeEvent, memo, MouseEvent } from 'react';
 
-import { Button, ButtonVariant } from '@/shared/ui/Button/Button';
-import { Input } from '@/shared/ui/Input/Input';
+import { Button, ButtonVariant } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
 
 interface IRecipeFormBaseIngredientProps {
   className?: string;

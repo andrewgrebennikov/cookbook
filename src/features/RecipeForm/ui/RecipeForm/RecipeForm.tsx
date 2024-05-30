@@ -2,14 +2,15 @@ import { ChangeEvent, SyntheticEvent, useCallback, useMemo } from 'react';
 
 import { RecipesCategoryField } from '@/features/RecipesCategory';
 
-import { Recipe, RecipeDifficulty } from '@/entities/Recipe';
+import { IRecipe, RecipeDifficulty } from '@/entities/Recipe';
 
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
-import { Button, ButtonVariant } from '@/shared/ui/Button/Button';
-import { Input } from '@/shared/ui/Input/Input';
-import { Select } from '@/shared/ui/Select/Select';
-import { Textarea } from '@/shared/ui/Textarea/Textarea';
+import { Button, ButtonVariant } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { Select } from '@/shared/ui/Select';
+import { Textarea } from '@/shared/ui/Textarea';
 
+import { OPTIONS_CATEGORY, OPTIONS_DIFFICULTY } from '../../model/consts/recipeFormConsts';
 import { recipeFormActions } from '../../model/slice/recipeFormSlice';
 import { RecipeFormAltIngredient } from '../RecipeFormAltIngredient/RecipeFormAltIngredient';
 import { RecipeFormBaseIngredient } from '../RecipeFormBaseIngredient/RecipeFormBaseIngredient';
@@ -18,7 +19,7 @@ import { RecipeFormStep } from '../RecipeFormStep/RecipeFormStep';
 
 interface IRecipeFormProps {
   className?: string;
-  formData?: Recipe;
+  formData?: IRecipe;
   isLoading?: boolean;
   error?: string;
   onSubmit?: (event: SyntheticEvent) => void;
@@ -28,53 +29,6 @@ interface IRecipeFormProps {
 export const RecipeForm = (props: IRecipeFormProps) => {
   const { className, isLoading, error, formData, onSubmit, formTitle } = props;
   const dispatch = useAppDispatch();
-
-  const optionsDifficulty = useMemo(
-    () => [
-      {
-        id: 1,
-        value: RecipeDifficulty.EASY,
-        name: 'Легко',
-      },
-      {
-        id: 2,
-        value: RecipeDifficulty.NORMAL,
-        name: 'Средне',
-      },
-      {
-        id: 3,
-        value: RecipeDifficulty.HARD,
-        name: 'Трудно',
-      },
-    ],
-    [],
-  );
-
-  const optionsCategory = useMemo(
-    () => [
-      {
-        id: 1,
-        value: RecipesCategoryField.SALAD,
-        name: 'Салаты',
-      },
-      {
-        id: 2,
-        value: RecipesCategoryField.SOUP,
-        name: 'Супы',
-      },
-      {
-        id: 3,
-        value: RecipesCategoryField.PASTA,
-        name: 'Паста и пицца',
-      },
-      {
-        id: 4,
-        value: RecipesCategoryField.DRINK,
-        name: 'Напитки',
-      },
-    ],
-    [],
-  );
 
   const handleTitleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -352,7 +306,7 @@ export const RecipeForm = (props: IRecipeFormProps) => {
           name="difficulty"
           value={formData?.difficulty}
           onChange={handleDifficultyChange}
-          options={optionsDifficulty}
+          options={OPTIONS_DIFFICULTY}
           required
         />
         <Select
@@ -363,7 +317,7 @@ export const RecipeForm = (props: IRecipeFormProps) => {
           name="category"
           value={formData?.category}
           onChange={handleCategoryChange}
-          options={optionsCategory}
+          options={OPTIONS_CATEGORY}
         />
         <Button type="submit">Отправить рецепт</Button>
       </fieldset>

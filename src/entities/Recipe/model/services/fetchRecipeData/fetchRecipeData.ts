@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { ThunkConfig } from '@/app/providers/StoreProvider';
+import { IThunkConfig } from '@/app/providers/StoreProvider';
 
-import { Recipe } from '../../types/recipe';
+import { IRecipe } from '../../types/recipe';
 
-export const fetchRecipeData = createAsyncThunk<Recipe, string | undefined, ThunkConfig<string>>(
+export const fetchRecipeData = createAsyncThunk<IRecipe, string | undefined, IThunkConfig<string>>(
   'recipe/fetchRecipeData',
   async (recipeId, thunkAPI) => {
     const { rejectWithValue, extra } = thunkAPI;
@@ -14,7 +14,7 @@ export const fetchRecipeData = createAsyncThunk<Recipe, string | undefined, Thun
         throw new Error();
       }
 
-      const response = await extra.api.get<Recipe>(`/recipes/${recipeId}`);
+      const response = await extra.api.get<IRecipe>(`/recipes/${recipeId}`);
 
       if (!response.data) {
         throw new Error();

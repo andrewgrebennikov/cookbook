@@ -4,23 +4,14 @@ import { RecipesCategoryField } from '@/features/RecipesCategory';
 import { RecipesOrderField } from '@/features/RecipesOrder';
 import { RecipesSortField } from '@/features/RecipesSort';
 
-import { Recipe } from '@/entities/Recipe';
+import { IRecipe } from '@/entities/Recipe';
 
 import { fetchRecipesData } from '../services/fetchRecipesData/fetchRecipesData';
-import { RecipesSchema } from '../types/recipesSchema';
+import { IRecipesSchema } from '../types/recipesSchema';
 
-const initialState: RecipesSchema = {
-  recipes: undefined,
-  isLoading: false,
-  error: undefined,
-  page: 1,
-  limit: 20,
-  order: RecipesOrderField.ASC,
-  sort: RecipesSortField.LIKES,
-  category: RecipesCategoryField.ALL,
-  search: '',
-  _inited: false,
-};
+import { RECIPES_LIST_INITIAL_STATE } from './recipesListInitialState';
+
+const initialState: IRecipesSchema = RECIPES_LIST_INITIAL_STATE;
 
 export const recipesListSlice = createSlice({
   name: 'recipes',
@@ -48,7 +39,7 @@ export const recipesListSlice = createSlice({
         state.error = undefined;
         state.isLoading = true;
       })
-      .addCase(fetchRecipesData.fulfilled, (state, action: PayloadAction<Recipe[]>) => {
+      .addCase(fetchRecipesData.fulfilled, (state, action: PayloadAction<IRecipe[]>) => {
         state.isLoading = false;
         state.recipes = action.payload;
       })

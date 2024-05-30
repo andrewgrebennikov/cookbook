@@ -1,3 +1,3 @@
-import { StoreSchema } from '@/app/providers/StoreProvider';
+import { IStoreSchema } from '@/app/providers/StoreProvider';
 
-export const getLoginUsername = (state: StoreSchema) => state.login?.username || '';
+export const getLoginUsername = (state: IStoreSchema) => state.login?.username || '';

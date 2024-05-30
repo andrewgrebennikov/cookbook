@@ -2,13 +2,13 @@ import { MouseEvent, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { DynamicModuleLoader, ReducersList } from '@/app/providers/StoreProvider';
+import { DynamicModuleLoader, ReducersListType } from '@/app/providers/StoreProvider';
 
 import IconLike from '@/shared/assets/icons/icon-like.svg';
 import { getRouteMain, getRouteRecipeEdit } from '@/shared/consts/router';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
-import { AppImage } from '@/shared/ui/AppImage/AppImage';
-import { Button, ButtonVariant } from '@/shared/ui/Button/Button';
+import { AppImage } from '@/shared/ui/AppImage';
+import { Button, ButtonVariant } from '@/shared/ui/Button';
 
 import { getCanEditRecipe } from '../model/selectors/getCanEditRecipe/getCanEditRecipe';
 import { getCanLikeRecipe } from '../model/selectors/getCanLikeRecipe/getCanLikeRecipe';
@@ -25,7 +25,7 @@ interface IRecipeDetailsProps {
   className?: string;
 }
 
-const reducers: ReducersList = { recipe: recipeReducer };
+const reducers: ReducersListType = { recipe: recipeReducer };
 
 export const RecipeDetails = (props: IRecipeDetailsProps) => {
   const { recipeId, className } = props;

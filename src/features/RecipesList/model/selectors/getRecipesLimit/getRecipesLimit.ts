@@ -1,3 +1,3 @@
-import { StoreSchema } from '@/app/providers/StoreProvider';
+import { IStoreSchema } from '@/app/providers/StoreProvider';
 
-export const getRecipesLimit = (state: StoreSchema) => state.recipes?.limit || 20;
+export const getRecipesLimit = (state: IStoreSchema) => state.recipes?.limit || 20;

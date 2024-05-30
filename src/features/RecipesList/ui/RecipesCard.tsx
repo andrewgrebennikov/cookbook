@@ -1,13 +1,13 @@
 import { cx } from 'classix';
 
-import { Recipe } from '@/entities/Recipe';
+import { IRecipe } from '@/entities/Recipe';
 
 import { getRouteRecipe } from '@/shared/consts/router';
-import { Card } from '@/shared/ui/Card/Card';
+import { Card } from '@/shared/ui/Card';
 
 interface IRecipesCardProps {
   className?: string;
-  recipe: Recipe;
+  recipe: IRecipe;
 }
 
 export const RecipesCard = (props: IRecipesCardProps) => {

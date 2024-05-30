@@ -1,14 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { loginByUsername } from '../services/loginByUsername/loginByUsername';
-import { LoginByUsernameSchema } from '../types/loginByUsernameSchema';
+import { ILoginByUsernameSchema } from '../types/loginByUsernameSchema';
 
-const initialState: LoginByUsernameSchema = {
-  username: '',
-  password: '',
-  isLoading: false,
-  error: undefined,
-};
+import { LOGIN_BY_USERNAME_INITIAL_STATE } from './loginByUsernameInitialState';
+
+const initialState: ILoginByUsernameSchema = LOGIN_BY_USERNAME_INITIAL_STATE;
 
 export const loginByUsernameSlice = createSlice({
   name: 'loginByUsername',

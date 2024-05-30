@@ -1,5 +1,5 @@
-import { StoreSchema } from '@/app/providers/StoreProvider';
+import { IStoreSchema } from '@/app/providers/StoreProvider';
 
 import { RecipesSortField } from '../../consts/recipesSortConsts';
 
-export const getRecipesSort = (state: StoreSchema) => state.recipes?.sort || RecipesSortField.TITLE;
+export const getRecipesSort = (state: IStoreSchema) => state.recipes?.sort || RecipesSortField.TITLE;

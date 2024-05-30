@@ -1,7 +1,7 @@
-import { Recipe } from '@/entities/Recipe';
+import { IRecipe } from '@/entities/Recipe';
 
-export interface RecipeFormSchema {
-  formData: Recipe;
+export interface IRecipeFormSchema {
+  formData: IRecipe;
   isLoading?: boolean;
   error?: string;
 }
