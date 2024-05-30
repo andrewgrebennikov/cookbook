@@ -1,13 +1,13 @@
 import { AxiosInstance } from 'axios';
 
-import { StoreSchema } from './storeSchema';
+import { IStoreSchema } from './storeSchema';
 
-interface ThunkExtraArg {
+interface IThunkExtraArg {
   api: AxiosInstance;
 }
 
-export interface ThunkConfig<T> {
+export interface IThunkConfig<T> {
   rejectValue: T;
-  extra: ThunkExtraArg;
-  state: StoreSchema;
+  extra: IThunkExtraArg;
+  state: IStoreSchema;
 }

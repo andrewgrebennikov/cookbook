@@ -1,37 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { RecipesCategoryField } from '@/features/RecipesCategory';
-
-import { fetchRecipeData, Recipe, RecipeDifficulty } from '@/entities/Recipe';
+import { fetchRecipeData, IRecipe } from '@/entities/Recipe';
 
 import { addNewRecipe } from '../services/addNewRecipe/addNewRecipe';
 import { updateRecipe } from '../services/updateRecipe/updateRecipe';
-import { RecipeFormSchema } from '../types/recipeFormSchema';
+import { IRecipeFormSchema } from '../types/recipeFormSchema';
 
-const initialState: RecipeFormSchema = {
-  formData: {
-    title: '',
-    likes: {
-      total: 0,
-      userLikes: [],
-    },
-    image: '',
-    cookingSteps: [''],
-    ingredients: [
-      {
-        name: '',
-        quantity: '',
-        alternatives: [],
-      },
-    ],
-    description: '',
-    difficulty: RecipeDifficulty.NONE,
-    category: RecipesCategoryField.ALL,
-    baseIngredients: [],
-  },
-  isLoading: false,
-  error: undefined,
-};
+import { RECIPE_FORM_INITIAL_STATE } from './recipeFormInitialState';
+
+const initialState: IRecipeFormSchema = RECIPE_FORM_INITIAL_STATE;
 
 export const recipeFormSlice = createSlice({
   name: 'recipe/recipeForm',
@@ -42,7 +19,7 @@ export const recipeFormSlice = createSlice({
         state.formData.likes.total = action.payload;
       }
     },
-    changeField: (state, action: PayloadAction<Recipe>) => {
+    changeField: (state, action: PayloadAction<IRecipe>) => {
       state.formData = { ...state.formData, ...action.payload };
     },
     addStep: (state) => {
@@ -136,7 +113,7 @@ export const recipeFormSlice = createSlice({
         state.error = undefined;
         state.isLoading = true;
       })
-      .addCase(fetchRecipeData.fulfilled, (state, action: PayloadAction<Recipe>) => {
+      .addCase(fetchRecipeData.fulfilled, (state, action: PayloadAction<IRecipe>) => {
         state.isLoading = false;
         state.formData = action.payload;
       })

@@ -1,9 +1,9 @@
 import { cx } from 'classix';
-import { ChangeEvent, memo, useMemo } from 'react';
+import { ChangeEvent, memo } from 'react';
 
-import { Select } from '@/shared/ui/Select/Select';
+import { Select } from '@/shared/ui/Select';
 
-import { RecipesSortField } from '../model/consts/recipesSortConsts';
+import { RECIPE_ORDER_OPTIONS, RecipesSortField } from '../model/consts/recipesSortConsts';
 
 interface IRecipesSortProps {
   className?: string;
@@ -13,27 +13,6 @@ interface IRecipesSortProps {
 
 export const RecipesSort = memo((props: IRecipesSortProps) => {
   const { className, onSortChange, sort } = props;
-
-  const options = useMemo(
-    () => [
-      {
-        id: 1,
-        value: RecipesSortField.LIKES,
-        name: 'По популярности',
-      },
-      {
-        id: 2,
-        value: RecipesSortField.TITLE,
-        name: 'По названию',
-      },
-      {
-        id: 3,
-        value: RecipesSortField.DIFFICULTY,
-        name: 'По сложности приготовления',
-      },
-    ],
-    [],
-  );
 
   const handleSortChange = (event: ChangeEvent<HTMLSelectElement>) => {
     onSortChange(event.target.value as RecipesSortField);
@@ -46,7 +25,7 @@ export const RecipesSort = memo((props: IRecipesSortProps) => {
       id="sort"
       value={sort}
       onChange={handleSortChange}
-      options={options}
+      options={RECIPE_ORDER_OPTIONS}
     />
   );
 });

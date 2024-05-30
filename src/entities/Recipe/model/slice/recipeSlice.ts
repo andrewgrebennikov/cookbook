@@ -3,14 +3,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchRecipeData } from '../services/fetchRecipeData/fetchRecipeData';
 import { likeRecipe } from '../services/likeRecipe/likeRecipe';
 import { removeRecipe } from '../services/removeRecipe/removeRecipe';
-import { Recipe } from '../types/recipe';
-import { RecipeSchema } from '../types/recipeSchema';
+import { IRecipe } from '../types/recipe';
+import { IRecipeSchema } from '../types/recipeSchema';
 
-const initialState: RecipeSchema = {
-  recipeData: undefined,
-  isLoading: false,
-  error: undefined,
-};
+import { recipeInitialState } from './recipeInitialState';
+
+const initialState: IRecipeSchema = recipeInitialState;
 
 export const recipeSlice = createSlice({
   name: 'recipe',
@@ -22,7 +20,7 @@ export const recipeSlice = createSlice({
         state.error = undefined;
         state.isLoading = true;
       })
-      .addCase(fetchRecipeData.fulfilled, (state, action: PayloadAction<Recipe>) => {
+      .addCase(fetchRecipeData.fulfilled, (state, action: PayloadAction<IRecipe>) => {
         state.isLoading = false;
         state.recipeData = action.payload;
       })
@@ -34,7 +32,7 @@ export const recipeSlice = createSlice({
         state.error = undefined;
         state.isLoading = true;
       })
-      .addCase(removeRecipe.fulfilled, (state, action: PayloadAction<Recipe>) => {
+      .addCase(removeRecipe.fulfilled, (state, action: PayloadAction<IRecipe>) => {
         state.isLoading = false;
         state.recipeData = action.payload;
       })
@@ -46,7 +44,7 @@ export const recipeSlice = createSlice({
         state.error = undefined;
         state.isLoading = true;
       })
-      .addCase(likeRecipe.fulfilled, (state, action: PayloadAction<Recipe>) => {
+      .addCase(likeRecipe.fulfilled, (state, action: PayloadAction<IRecipe>) => {
         state.isLoading = false;
         state.recipeData = action.payload;
       })

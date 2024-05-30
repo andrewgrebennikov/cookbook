@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { ThunkConfig } from '@/app/providers/StoreProvider';
+import { IThunkConfig } from '@/app/providers/StoreProvider';
 
-import { Recipe } from '@/entities/Recipe';
+import { IRecipe } from '@/entities/Recipe';
 import { getAuthData } from '@/entities/User';
 
 import { getFormData } from '../../selectors/getFormData/getFormData';
 
-export const addNewRecipe = createAsyncThunk<Recipe, void, ThunkConfig<string>>(
+export const addNewRecipe = createAsyncThunk<IRecipe, void, IThunkConfig<string>>(
   'recipe/addNewRecipe',
   async (_, thunkAPI) => {
     const { rejectWithValue, extra, getState, dispatch } = thunkAPI;
@@ -16,7 +16,7 @@ export const addNewRecipe = createAsyncThunk<Recipe, void, ThunkConfig<string>>(
     const formData = getFormData(getState());
 
     try {
-      const response = await extra.api.post<Recipe>('/recipes', {
+      const response = await extra.api.post<IRecipe>('/recipes', {
         ...formData,
         userId: profileData?.id,
       });

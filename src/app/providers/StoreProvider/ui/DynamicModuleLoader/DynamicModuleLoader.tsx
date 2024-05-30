@@ -1,28 +1,29 @@
-import { FC, PropsWithChildren, useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useStore } from 'react-redux';
 
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 
-import { ReducersList } from '../../model/types/reducerManager';
-import { StoreSchemaKeys } from '../../model/types/storeSchema';
-import { StoreWithManager } from '../../model/types/storeWithManager';
+import { ReducersListType } from '../../model/types/reducerManager';
+import { StoreSchemaKeysType } from '../../model/types/storeSchema';
+import { IStoreWithManager } from '../../model/types/storeWithManager';
 
 interface IDynamicModuleLoader {
-  reducers: ReducersList;
+  reducers: ReducersListType;
   removeAfterUnmount?: boolean;
+  children?: ReactNode;
 }
 
-export const DynamicModuleLoader: FC<PropsWithChildren<IDynamicModuleLoader>> = (props) => {
+export const DynamicModuleLoader = (props: IDynamicModuleLoader) => {
   const { children, reducers, removeAfterUnmount } = props;
-  const store = useStore() as StoreWithManager;
+  const store = useStore() as IStoreWithManager;
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     const allReducers = store.reducerManager.getReducerMap();
 
     Object.entries(reducers).forEach(([name, reducer]) => {
-      if (!allReducers[name as StoreSchemaKeys]) {
-        store.reducerManager.add(name as StoreSchemaKeys, reducer);
+      if (!allReducers[name as StoreSchemaKeysType]) {
+        store.reducerManager.add(name as StoreSchemaKeysType, reducer);
         dispatch({ type: `@init ${name} reducer` });
       }
     });
@@ -30,7 +31,7 @@ export const DynamicModuleLoader: FC<PropsWithChildren<IDynamicModuleLoader>> = 
     return () => {
       if (removeAfterUnmount) {
         Object.entries(reducers).forEach(([name]) => {
-          store.reducerManager.remove(name as StoreSchemaKeys);
+          store.reducerManager.remove(name as StoreSchemaKeysType);
           dispatch({ type: `@destroy ${name} reducer` });
         });
       }

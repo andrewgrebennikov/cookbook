@@ -1,14 +1,14 @@
 import { AnyAction, CombinedState, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 
-import { StoreSchema, StoreSchemaKeys } from './storeSchema';
+import { IStoreSchema, StoreSchemaKeysType } from './storeSchema';
 
-export interface ReducerManager {
-  getReducerMap: () => ReducersMapObject<StoreSchema>;
-  reduce: (state: StoreSchema, action: AnyAction) => CombinedState<StoreSchema>;
-  add: (key: StoreSchemaKeys, reducer: Reducer) => void;
-  remove: (key: StoreSchemaKeys) => void;
+export interface IReducerManager {
+  getReducerMap: () => ReducersMapObject<IStoreSchema>;
+  reduce: (state: IStoreSchema, action: AnyAction) => CombinedState<IStoreSchema>;
+  add: (key: StoreSchemaKeysType, reducer: Reducer) => void;
+  remove: (key: StoreSchemaKeysType) => void;
 }
 
-export type ReducersList = {
-  [name in StoreSchemaKeys]?: Reducer<NonNullable<StoreSchema[name]>>;
+export type ReducersListType = {
+  [name in StoreSchemaKeysType]?: Reducer<NonNullable<IStoreSchema[name]>>;
 };

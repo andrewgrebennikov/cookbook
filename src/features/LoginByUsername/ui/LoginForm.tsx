@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { getRouteMain } from '@/shared/consts/router';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
-import { Button } from '@/shared/ui/Button/Button';
-import { Input } from '@/shared/ui/Input/Input';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
 
 import { getLoginError } from '../model/selectors/getLoginError/getLoginError';
 import { getLoginIsLoading } from '../model/selectors/getLoginIsLoading/getLoginIsLoading';

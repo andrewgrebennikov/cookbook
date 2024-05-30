@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { ThunkConfig } from '@/app/providers/StoreProvider';
+import { IThunkConfig } from '@/app/providers/StoreProvider';
 
-import { Recipe } from '../../types/recipe';
+import { IRecipe } from '../../types/recipe';
 
-export const removeRecipe = createAsyncThunk<Recipe, string | undefined, ThunkConfig<string>>(
+export const removeRecipe = createAsyncThunk<IRecipe, string | undefined, IThunkConfig<string>>(
   'recipe/removeRecipe',
   async (recipeId, thunkAPI) => {
     const { rejectWithValue, extra, dispatch } = thunkAPI;
@@ -14,7 +14,7 @@ export const removeRecipe = createAsyncThunk<Recipe, string | undefined, ThunkCo
         throw new Error();
       }
 
-      const response = await extra.api.delete<Recipe>(`/recipes/${recipeId}`);
+      const response = await extra.api.delete<IRecipe>(`/recipes/${recipeId}`);
 
       if (!response.data) {
         throw new Error();

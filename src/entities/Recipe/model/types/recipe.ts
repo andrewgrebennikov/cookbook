@@ -2,30 +2,30 @@ import { RecipesCategoryField } from '@/features/RecipesCategory';
 
 import { RecipeDifficulty } from '../consts/recipeConsts';
 
-export interface AltIngredient {
+export interface IAltIngredient {
   name: string;
   quantity: string;
 }
 
-export interface Ingredient {
+export interface IIngredient {
   name: string;
   quantity: string;
-  alternatives: AltIngredient[];
+  alternatives: IAltIngredient[];
 }
 
-export interface Like {
+export interface ILike {
   total: number;
   userLikes: string[];
 }
 
-export interface Recipe {
+export interface IRecipe {
   id?: string;
   title?: string;
   image?: string;
-  likes?: Like;
+  likes?: ILike;
   description?: string;
   cookingSteps?: string[];
-  ingredients?: Ingredient[];
+  ingredients?: IIngredient[];
   baseIngredients?: string[];
   difficulty?: RecipeDifficulty;
   userId?: string;

@@ -1,9 +1,9 @@
-import { DynamicModuleLoader, ReducersList } from '@/app/providers/StoreProvider';
+import { DynamicModuleLoader, ReducersListType } from '@/app/providers/StoreProvider';
 
 import { RecipeAddForm } from '@/features/RecipeAddForm';
 import { recipeFormReducer } from '@/features/RecipeForm';
 
-const reducers: ReducersList = {
+const reducers: ReducersListType = {
   recipeForm: recipeFormReducer,
 };
 

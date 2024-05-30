@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { ThunkConfig } from '@/app/providers/StoreProvider';
+import { IThunkConfig } from '@/app/providers/StoreProvider';
 
 import { RecipesCategoryField } from '@/features/RecipesCategory';
 import { RecipesOrderField } from '@/features/RecipesOrder';
@@ -10,7 +10,7 @@ import { getRecipesIsInited } from '../../selectors/getRecipesIsInited/getRecipe
 import { recipesActions } from '../../slice/recipesListSlice';
 import { fetchRecipesData } from '../fetchRecipesData/fetchRecipesData';
 
-export const initRecipes = createAsyncThunk<void, URLSearchParams, ThunkConfig<string>>(
+export const initRecipes = createAsyncThunk<void, URLSearchParams, IThunkConfig<string>>(
   'recipes/initRecipes',
   async (searchParams, thunkAPI) => {
     const { getState, dispatch } = thunkAPI;

@@ -6,10 +6,10 @@ declare module '*.svg' {
 declare const __IS_DEV__: boolean;
 declare const __API__: string;
 
-declare type AppDispatch = typeof import('../providers/StoreProvider').AppDispatch;
+declare type AppDispatchType = typeof import('../providers/StoreProvider').AppDispatch;
 
-type DeepPartial<T> = T extends object
+type DeepPartialType<T> = T extends object
   ? {
-      [P in keyof T]?: DeepPartial<T[P]>;
+      [P in keyof T]?: DeepPartialType<T[P]>;
     }
   : T;

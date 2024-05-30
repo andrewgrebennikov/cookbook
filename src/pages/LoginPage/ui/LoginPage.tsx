@@ -1,8 +1,8 @@
-import { DynamicModuleLoader, ReducersList } from '@/app/providers/StoreProvider';
+import { DynamicModuleLoader, ReducersListType } from '@/app/providers/StoreProvider';
 
 import { LoginForm, loginReducer } from '@/features/LoginByUsername';
 
-const reducers: ReducersList = { login: loginReducer };
+const reducers: ReducersListType = { login: loginReducer };
 
 const LoginPage = () => {
   return (

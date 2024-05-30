@@ -1,6 +1,6 @@
 import { ChangeEvent, memo } from 'react';
 
-import { Input } from '@/shared/ui/Input/Input';
+import { Input } from '@/shared/ui/Input';
 
 interface IRecipeFormIngredientProps {
   className?: string;

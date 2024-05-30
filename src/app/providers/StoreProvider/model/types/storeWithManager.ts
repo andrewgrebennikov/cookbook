@@ -1,7 +1,7 @@
 import { EnhancedStore } from '@reduxjs/toolkit';
 
-import { ReducerManager } from './reducerManager';
+import { IReducerManager } from './reducerManager';
 
-export interface StoreWithManager extends EnhancedStore {
-  reducerManager: ReducerManager;
+export interface IStoreWithManager extends EnhancedStore {
+  reducerManager: IReducerManager;
 }

@@ -1,3 +1,3 @@
-import { StoreSchema } from '@/app/providers/StoreProvider';
+import { IStoreSchema } from '@/app/providers/StoreProvider';
 
-export const getLoginError = (state: StoreSchema) => state.login?.error;
+export const getLoginError = (state: IStoreSchema) => state.login?.error;

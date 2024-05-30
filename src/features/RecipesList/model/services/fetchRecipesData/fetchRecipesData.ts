@@ -1,18 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { ThunkConfig } from '@/app/providers/StoreProvider';
+import { IThunkConfig } from '@/app/providers/StoreProvider';
 
 import { RecipesCategoryField, getRecipesCategory } from '@/features/RecipesCategory';
 import { getRecipesOrder } from '@/features/RecipesOrder';
 import { getRecipesSearch } from '@/features/RecipesSearch';
 import { getRecipesSort } from '@/features/RecipesSort';
 
-import { Recipe } from '@/entities/Recipe';
+import { IRecipe } from '@/entities/Recipe';
 
 import { getRecipesLimit } from '../../selectors/getRecipesLimit/getRecipesLimit';
 import { getRecipesPage } from '../../selectors/getRecipesPage/getRecipesPage';
 
-export const fetchRecipesData = createAsyncThunk<Recipe[], void, ThunkConfig<string>>(
+export const fetchRecipesData = createAsyncThunk<IRecipe[], void, IThunkConfig<string>>(
   'recipes/fetchRecipes',
   async (_, thunkAPI) => {
     const { rejectWithValue, extra, getState } = thunkAPI;
@@ -25,7 +25,7 @@ export const fetchRecipesData = createAsyncThunk<Recipe[], void, ThunkConfig<str
     const search = getRecipesSearch(getState());
 
     try {
-      const response = await extra.api.get<Recipe[]>('/recipes', {
+      const response = await extra.api.get<IRecipe[]>('/recipes', {
         params: {
           _page: page,
           _limit: limit,

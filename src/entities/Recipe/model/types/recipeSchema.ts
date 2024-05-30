@@ -1,7 +1,7 @@
-import { Recipe } from './recipe';
+import { IRecipe } from './recipe';
 
-export interface RecipeSchema {
-  recipeData?: Recipe;
+export interface IRecipeSchema {
+  recipeData?: IRecipe;
   isLoading?: boolean;
   error?: string;
 }

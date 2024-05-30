@@ -2,7 +2,7 @@ import { SyntheticEvent, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { DynamicModuleLoader, ReducersList } from '@/app/providers/StoreProvider';
+import { DynamicModuleLoader, ReducersListType } from '@/app/providers/StoreProvider';
 
 import {
   getFormData,
@@ -21,7 +21,7 @@ interface IRecipeEditFormProps {
   className?: string;
 }
 
-const reducers: ReducersList = {
+const reducers: ReducersListType = {
   recipeForm: recipeFormReducer,
 };
 

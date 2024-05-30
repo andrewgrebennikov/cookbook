@@ -1,16 +1,16 @@
 import { AnyAction, combineReducers, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 
-import { ReducerManager } from '../model/types/reducerManager';
-import { StoreSchema, StoreSchemaKeys } from '../model/types/storeSchema';
+import { IReducerManager } from '../model/types/reducerManager';
+import { IStoreSchema, StoreSchemaKeysType } from '../model/types/storeSchema';
 
-export const createReducerManager = (initialReducers: ReducersMapObject<StoreSchema>): ReducerManager => {
+export const createReducerManager = (initialReducers: ReducersMapObject<IStoreSchema>): IReducerManager => {
   const reducers = { ...initialReducers };
   let combinedReducer = combineReducers(reducers);
-  let keysToRemove: StoreSchemaKeys[] = [];
+  let keysToRemove: StoreSchemaKeysType[] = [];
 
   return {
     getReducerMap: () => reducers,
-    reduce: (state: StoreSchema, action: AnyAction) => {
+    reduce: (state: IStoreSchema, action: AnyAction) => {
       if (keysToRemove.length > 0) {
         state = { ...state };
 
@@ -23,7 +23,7 @@ export const createReducerManager = (initialReducers: ReducersMapObject<StoreSch
 
       return combinedReducer(state, action);
     },
-    add: (key: StoreSchemaKeys, reducer: Reducer) => {
+    add: (key: StoreSchemaKeysType, reducer: Reducer) => {
       if (!key || reducers[key]) {
         return;
       }
@@ -31,7 +31,7 @@ export const createReducerManager = (initialReducers: ReducersMapObject<StoreSch
       reducers[key] = reducer;
       combinedReducer = combineReducers(reducers);
     },
-    remove: (key: StoreSchemaKeys) => {
+    remove: (key: StoreSchemaKeysType) => {
       if (!key || !reducers[key]) {
         return;
       }
