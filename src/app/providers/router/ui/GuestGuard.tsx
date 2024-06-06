@@ -4,7 +4,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 
 import { getAuthData } from '@/entities/User';
 
-import { getRouteLogin, getRouteMain } from '@/shared/consts/router';
+import { getRouteLogin } from '@/shared/consts/router';
 
 interface IGuestGuardProps {
   children: ReactNode;
